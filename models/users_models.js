@@ -47,6 +47,8 @@ exports.checkLogin = async (user) => {
 		}
 		if (await bcrypt.compare(password, response.hash_password)) {
 			return "Successfully logged in.";
+		} else {
+			return "Incorrect password.";
 		}
 	} catch (err) {
 		console.log(err);
