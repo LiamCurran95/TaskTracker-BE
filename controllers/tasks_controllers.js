@@ -1,11 +1,23 @@
 const {
 	fetchTasks,
+	fetchTasksByUser,
 	postTask,
 	amendTaskCompletion,
 } = require("../models/tasks_models");
 
 exports.getTasks = async (req, res, next) => {
 	fetchTasks()
+		.then((tasks) => {
+			res.status(200).send({ tasks: tasks });
+		})
+		.catch((err) => {
+			next(err);
+		});
+};
+
+exports.getTasksByUser = async (req, res, next) => {
+	const { username } = req.params;
+	fetchTasksByUser(username)
 		.then((tasks) => {
 			res.status(200).send({ tasks: tasks });
 		})

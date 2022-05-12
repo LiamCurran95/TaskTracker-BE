@@ -18,6 +18,21 @@ exports.fetchTasks = async () => {
 	}
 };
 
+exports.fetchTasksByUser = async (username) => {
+	try {
+		await mongoose.connect(uri, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
+		const tasks = await Tasks.find({ username: username });
+		return tasks;
+	} catch (err) {
+		console.log(err);
+	} finally {
+		mongoose.connection.close;
+	}
+};
+
 exports.postTask = async (task) => {
 	try {
 		await mongoose.connect(uri, {

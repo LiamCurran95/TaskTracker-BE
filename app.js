@@ -29,9 +29,11 @@ const {
 	getTasks,
 	createTask,
 	updateTaskCompletion,
+	getTasksByUser,
 } = require("./controllers/tasks_controllers");
 
 app.get("/api/tasks", getTasks);
+app.get("/api/tasks/:username", getTasksByUser);
 app.post("/api/tasks", createTask);
 app.patch("/api/tasks", updateTaskCompletion);
 

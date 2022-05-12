@@ -109,6 +109,17 @@ describe("Testing", () => {
 						done();
 					});
 			});
+			it("Status 200 - Return contains all tasks by user", (done) => {
+				chai
+					.request(app)
+					.get("/api/tasks/LiamCurran")
+					.end((err, res) => {
+						res.should.have.status(200);
+						res.body.tasks.should.have.lengthOf(1);
+						res.body.tasks[0].task.should.eql("Complete task tracker");
+						done();
+					});
+			});
 			it("Status 201 - Posted task", (done) => {
 				const task = {
 					task: { username: "MR TaskTrack", task: "Make post-task work" },
