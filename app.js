@@ -35,8 +35,9 @@ app.get("/api/tasks", getTasks);
 app.post("/api/tasks", createTask);
 app.patch("/api/tasks", updateTaskCompletion);
 
-app.listen(process.env.PORT || 3000, () => {
-	console.log("Server running.");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+	console.log(`Server running on ${port}`);
 });
 
 app.use(handler_mongoose_errors);
